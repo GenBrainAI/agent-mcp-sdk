@@ -1,0 +1,83 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "agent-mcp-sdk"
+version = "0.1.0"
+description = "MCP server templates and client toolkit for building agent.ceo integrations — Model Context Protocol made easy"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    { name = "GenBrain AI", email = "dev@genbrain.ai" },
+]
+keywords = [
+    "mcp",
+    "model-context-protocol",
+    "ai-agents",
+    "agent-ceo",
+    "cyborgenic",
+    "multi-agent",
+    "llm",
+    "tool-use",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "httpx>=0.25.0",
+    "pydantic>=2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21",
+    "ruff>=0.1.0",
+    "black>=23.0",
+    "mypy>=1.0",
+]
+sse = [
+    "uvicorn>=0.24.0",
+    "starlette>=0.27.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/GenBrainAI/agent-mcp-sdk"
+Documentation = "https://agent.ceo/docs/mcp"
+Repository = "https://github.com/GenBrainAI/agent-mcp-sdk"
+Issues = "https://github.com/GenBrainAI/agent-mcp-sdk/issues"
+"agent.ceo" = "https://agent.ceo"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/agent_mcp"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP"]
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
